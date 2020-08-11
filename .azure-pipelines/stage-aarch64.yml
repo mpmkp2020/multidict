@@ -22,7 +22,7 @@ stages:
           python.version: '3.8'
           no_extensions: ''
           image: 'ubuntu-latest
-    pool:
+      pool:
       vmImage: 'ubuntu-latest'
     
     steps:
