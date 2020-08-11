@@ -21,7 +21,7 @@ stages:
         Py38-C-Linux:
           python.version: '3.8'
           no_extensions: ''
-          image: 'ubuntu-latest
+          image: 'ubuntu-latest'
     pool:
       vmImage: 'ubuntu-latest'
     
