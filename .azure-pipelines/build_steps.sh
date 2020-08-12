@@ -6,7 +6,7 @@ echo "Installing build dependencies"
 yum install gcc gcc-c++ python3-devel wget make enchant-devel -y
 cd '/home/multidict_root'
 export PATH='/opt/bin':${PATH}
-PYTHON='/opt/_internal/cpython-$1*/bin/python'
+PYTHON=$("/opt/_internal/cpython-$1*/bin/python")
 echo "pythoncommand"
 echo "$PYTHON"
 echo "Update pip"
