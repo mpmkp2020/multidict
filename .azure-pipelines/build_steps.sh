@@ -1,4 +1,5 @@
 echo "exporting Mutlidict root directory"
+echo "$CODECOV_TOKEN"
 export MULTIDICT_ROOT=$(cd "$(dirname "$0")/.."; pwd;)
 
 echo "Installing build dependencies"
@@ -50,8 +51,7 @@ if [ $? != "0" ]; then
  exit 1
 fi
 
-if [ "$codecov.token" != '']; then
- export CODECOV_TOKEN = $codecov.token
+if [ $CODECOV_TOKEN != '']; then
  echo "Install codecov"
  $PYTHON -m pip install codecov
  if [ $? != "0" ]; then
@@ -64,5 +64,7 @@ if [ "$codecov.token" != '']; then
   echo "Upload coverage reports failed"
   exit 1
  fi
+else
+ "codecov token is empty"
 fi
 echo "test complete"
