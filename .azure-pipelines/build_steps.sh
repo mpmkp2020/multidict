@@ -13,7 +13,7 @@ $PYTHON -m pip install -U setuptools wheel
 result=$?
 echo "result is"
 echo "$result"
-if ["$result" != 0]
+if [ $result != "0" ]
 then
  echo "Update pip failed"
  exit 1
@@ -23,7 +23,7 @@ $PYTHON setup.py install
 result=$?
 echo "result is"
 echo "$result"
-if ["$result" != 0]
+if ["$result" != "0"]
 then
  echo "Install itself failed"
  exit 1
@@ -33,7 +33,7 @@ $PYTHON -m pip install -r requirements/pytest.txt
 result=$?
 echo "result is"
 echo "$result"
-if ["$result" != 0]
+if ["$result" != "0"]
 then
  echo "Install dependencies failed"
  exit 1
@@ -53,7 +53,7 @@ $PYTHON -m pytest tests -vv
 result=$?
 echo "result is"
 echo "$result"
-if ["$result" != 0]
+if ["$result" != "0"]
 then
  echo "pytest failed"
  exit 1
@@ -63,7 +63,7 @@ $PYTHON -m coverage xml
 result=$?
 echo "result is"
 echo "$result"
-if ["$result" != 0]
+if ["$result" != "0"]
 then
  echo "Prepare coverage failed"
  exit 1
@@ -73,7 +73,7 @@ $PYTHON -m pip install codecov
 result=$?
 echo "result is"
 echo "$result"
-if ["$result" != 0]
+if ["$result" != "0"]
 then
  echo "Install codecov failed"
  exit 1
@@ -83,7 +83,7 @@ $PYTHON -m codecov -f coverage.xml -X gcov
 result=$?
 echo "result is"
 echo "$result"
-if ["$result" != 0]
+if ["$result" != "0"]
 then
  echo "Upload coverage reports failed"
  exit 1
