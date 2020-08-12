@@ -10,58 +10,79 @@ echo "$PYTHON"
 echo "Update pip"
 #result=$($PYTHON -m pip install -U setuptools wheel)
 $PYTHON -m pip install -U setuptools wheel
-ret_code=$?
+result=$?
 echo "result is"
-echo "$ret_code"
-if [$ret_code != 0]
+echo "$result"
+if [$result != 0]
 then
  echo "Update pip failed"
  exit 1
 fi
 echo "Install itself"
-result=$($PYTHON setup.py install)
+$PYTHON setup.py install
+result=$?
+echo "result is"
+echo "$result"
 if [$result != 0]
 then
  echo "Install itself failed"
  exit 1
 fi
 echo "Install dependencies"
-result=$($PYTHON -m pip install -r requirements/pytest.txt)
+$PYTHON -m pip install -r requirements/pytest.txt
+result=$?
+echo "result is"
+echo "$result"
 if [$result != 0]
 then
  echo "Install dependencies failed"
  exit 1
 fi
 echo "Install pytest-azurepipelines"
-result=$($PYTHON -m pip install pytest-azurepipelines)
+$PYTHON -m pip install pytest-azurepipelines
+result=$?
+echo "result is"
+echo "$result"
 if [$result != 0]
 then
  echo "Install pytest-azurepipelines failed"
  exit 1
 fi
 echo "pytest"
-result=$($PYTHON -m pytest tests -vv)
+$PYTHON -m pytest tests -vv
+result=$?
+echo "result is"
+echo "$result"
 if [$result != 0]
 then
  echo "pytest failed"
  exit 1
 fi
 echo "Prepare coverage"
-result=$($PYTHON -m coverage xml)
+$PYTHON -m coverage xml
+result=$?
+echo "result is"
+echo "$result"
 if [$result != 0]
 then
  echo "Prepare coverage failed"
  exit 1
 fi
 echo "Install codecov"
-result=$($PYTHON -m pip install codecov)
+$PYTHON -m pip install codecov
+result=$?
+echo "result is"
+echo "$result"
 if [$result != 0]
 then
  echo "Install codecov failed"
  exit 1
 fi
 echo "Upload coverage reports"
-result=$($PYTHON -m codecov -f coverage.xml -X gcov)
+$PYTHON -m codecov -f coverage.xml -X gcov
+result=$?
+echo "result is"
+echo "$result"
 if [$result != 0]
 then
  echo "Upload coverage reports failed"
