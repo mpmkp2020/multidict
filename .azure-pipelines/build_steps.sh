@@ -11,6 +11,7 @@ echo "Update pip"
 export result='$PYTHON -m pip install -U setuptools wheel'
 echo "$result"
 if [$result = 1]
+then
  echo "Update pip failed"
  exit 1
 fi
