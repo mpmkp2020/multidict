@@ -44,6 +44,8 @@ stages:
         export HOST_USER_ID=$(id -u)
         docker run -v "${MULTIDICT_ROOT}":/home/multidict_root:rw,z \
                    -e HOST_USER_ID \
+                   ne(variables['codecov.token'], '')  \
+                   $(codecov.token) \
                    $DOCKER_IMAGE \
                    bash /home/multidict_root/.azure-pipelines/build_steps.sh "$(python.version)"
       displayName: 'Running AArch64 build'
