@@ -50,8 +50,8 @@ if [ $? != "0" ]; then
  exit 1
 fi
 
-if [ $(codecov.token) != '']; then
- export CODECOV_TOKEN = $(codecov.token) 
+if [ ${codecov.token} != '']; then
+ export CODECOV_TOKEN = ${codecov.token} 
  echo "Install codecov"
  $PYTHON -m pip install codecov
  if [ $? != "0" ]; then
