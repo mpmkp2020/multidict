@@ -42,7 +42,7 @@ stages:
         set -xeo pipefail
         export MULTIDICT_ROOT=`pwd`
         export HOST_USER_ID=$(id -u)
-        export CODECOV_TOKEN=$(codecov.token)
+        export CODECOV_TOKEN=$codecov.token
         docker run -v "${MULTIDICT_ROOT}":/home/multidict_root:rw,z \
                    -e HOST_USER_ID \
                    -e CODECOV_TOKEN \
