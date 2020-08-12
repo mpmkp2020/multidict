@@ -28,9 +28,6 @@ if [ $? != "0" ]; then
 fi
 echo "Install pytest-azurepipelines"
 $PYTHON -m pip install pytest-azurepipelines
-result=$?
-echo "result is"
-echo "$result"
 if [ $? != "0" ]; then
  echo "Install pytest-azurepipelines failed"
  exit 1
