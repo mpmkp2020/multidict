@@ -8,7 +8,7 @@ export PYTHON="/opt/_internal/cpython-$1*/bin/python"
 echo "pythoncommand"
 echo "$PYTHON"
 echo "Update pip"
-result=$($PYTHON -m pip install -U setuptools wheel)
+export result=$($PYTHON -m pip install -U setuptools wheel)
 echo "result is"
 echo "$result"
 if [$result != 0]
