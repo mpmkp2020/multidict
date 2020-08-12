@@ -7,10 +7,12 @@ yum install gcc gcc-c++ python3-devel wget make enchant-devel -y
 cd '/home/multidict_root'
 export PATH='/opt/bin':${PATH}
 export PYTHON='/opt/_internal/cpython-$1*/bin/python'
+echo "pythoncommand"
+echo "$PYTHON"
 echo "Update pip"
 export result='$PYTHON -m pip install -U setuptools wheel'
 echo "$result"
-if [$result = 1]
+if [$result == 1]
 then
  echo "Update pip failed"
  exit 1
