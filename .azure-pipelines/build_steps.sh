@@ -8,9 +8,9 @@ cd '/home/multidict_root'
 export PATH='/opt/bin':${PATH}
 export PYTHON=/opt/_internal/cpython-$1*/bin/python
 echo "Update pip"
-result = $PYTHON -m pip install -U setuptools wheel
+export result = $PYTHON -m pip install -U setuptools wheel
 echo "$result"
-if result = 1
+if $result = 1
  echo "Update pip failed"
  exit 1
 fi
