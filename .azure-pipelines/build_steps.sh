@@ -51,7 +51,7 @@ if [ $? != "0" ]; then
  exit 1
 fi
 
-if [ "$CODECOV_TOKEN" != "''"]; then
+if [ CODECOV_TOKEN != '' ]; then
  echo "Install codecov"
  $PYTHON -m pip install codecov
  if [ $? != "0" ]; then
