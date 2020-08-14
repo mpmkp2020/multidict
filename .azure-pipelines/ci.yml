@@ -15,6 +15,6 @@ pr:
     - ?.?*  # matches to backport branches, e.g. 3.6
 
 stages:
-#- template: stage-lint.yml
-#- template: stage-test.yml
+- template: stage-lint.yml
+- template: stage-test.yml
 - template: stage-aarch64.yml
