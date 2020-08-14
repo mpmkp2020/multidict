@@ -1,5 +1,5 @@
 echo "exporting Mutlidict root directory"
-echo "CODECOV_TOKEN"
+echo "$CODECOV_TOKEN"
 export MULTIDICT_ROOT=$(cd "$(dirname "$0")/.."; pwd;)
 
 echo "Installing build dependencies"
