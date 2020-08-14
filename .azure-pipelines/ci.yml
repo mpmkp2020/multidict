@@ -13,6 +13,9 @@ pr:
     include:
     - master
     - ?.?*  # matches to backport branches, e.g. 3.6
+    
+variables:
+- group: codecov
 
 stages:
 - template: stage-lint.yml
