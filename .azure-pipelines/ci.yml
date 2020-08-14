@@ -12,7 +12,7 @@ pr:
   branches:
     include:
     - master
-    - ?.?*  # matches to backport branches, e.g. 3.6
+    - ?.?*  # matches to backport branches, e.g. 3.7
     
 variables:
 - group: codecov
