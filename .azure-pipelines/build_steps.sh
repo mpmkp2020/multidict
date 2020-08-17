@@ -1,8 +1,4 @@
 echo "exporting Mutlidict root directory"
-echo "python versions"
-which python3
-python3 --version
-echo "${CODECOV_TOKEN}"
 export MULTIDICT_ROOT=$(cd "$(dirname "$0")/.."; pwd;)
 
 echo "Installing build dependencies"
@@ -10,11 +6,11 @@ yum install gcc gcc-c++ python3-devel wget make enchant-devel -y
 
 cd $MULTIDICT_ROOT
 export PATH='/opt/bin':${PATH}
+echo "standard path for different python versions"
 export PYTHON="/opt/_internal/cpython-$1*/bin/python"
 
 echo "Update pip"
-#$PYTHON -m pip install --upgrade pip setuptools wheel
-$PYTHON -m pip install --upgrade abc
+$PYTHON -m pip install --upgrade pip setuptools wheel
 if [ $? != "0" ]; then
  echo "Update pip failed"
  exit 1
@@ -69,6 +65,6 @@ if [ CODECOV_TOKEN != '' ]; then
   exit 1
  fi
 else
- echo "codecov token is empty"
+ echo "code coverage upload is not intended"
 fi
 echo "test complete"
