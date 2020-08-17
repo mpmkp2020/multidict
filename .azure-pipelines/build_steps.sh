@@ -8,12 +8,12 @@ export MULTIDICT_ROOT=$(cd "$(dirname "$0")/.."; pwd;)
 echo "Installing build dependencies"
 yum install gcc gcc-c++ python3-devel wget make enchant-devel -y
 
-cd '/home/multidict_root'
+cd $MULTIDICT_ROOT
 export PATH='/opt/bin':${PATH}
 export PYTHON="/opt/_internal/cpython-$1*/bin/python"
 
 echo "Update pip"
-$PYTHON -m pip install -U setuptools wheel
+$PYTHON -m pip --upgrade pip setuptools wheel
 if [ $? != "0" ]; then
  echo "Update pip failed"
  exit 1
