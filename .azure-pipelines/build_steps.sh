@@ -1,7 +1,7 @@
 echo "exporting Mutlidict root directory"
 echo "python versions"
-which python
-python --version
+which python3
+python3 --version
 echo "${CODECOV_TOKEN}"
 export MULTIDICT_ROOT=$(cd "$(dirname "$0")/.."; pwd;)
 
