@@ -13,7 +13,8 @@ export PATH='/opt/bin':${PATH}
 export PYTHON="/opt/_internal/cpython-$1*/bin/python"
 
 echo "Update pip"
-$PYTHON -m pip install --upgrade pip setuptools wheel
+#$PYTHON -m pip install --upgrade pip setuptools wheel
+$PYTHON -m pip install --upgrade abc
 if [ $? != "0" ]; then
  echo "Update pip failed"
  exit 1
