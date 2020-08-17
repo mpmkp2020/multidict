@@ -18,6 +18,6 @@ variables:
 - group: codecov
 
 stages:
-- template: stage-lint.yml
-- template: stage-test.yml
+#- template: stage-lint.yml
+#- template: stage-test.yml
 - template: stage-aarch64.yml
