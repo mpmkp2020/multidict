@@ -1,5 +1,6 @@
 echo "exporting Mutlidict root directory"
 export MULTIDICT_ROOT=$(cd "$(dirname "$0")/.."; pwd;)
+echo $MULTIDICT_ROOT
 
 echo "Installing build dependencies"
 yum install gcc gcc-c++ python3-devel wget make enchant-devel -y
