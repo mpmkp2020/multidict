@@ -7,7 +7,7 @@ export PYTHON="python$1"
 
 echo "Installing build dependencies"
 apt-get update -y
-apt-get install -y $PYTHON python3-pip lib$PYTHON-dev
+apt-get install -y $PYTHON python3-pip lib$PYTHON-dev git
 
 echo "Update pip"
 $PYTHON -m pip install --upgrade pip setuptools wheel
