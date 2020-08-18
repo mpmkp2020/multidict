@@ -1,5 +1,5 @@
 echo "exporting Mutlidict root directory"
-export MULTIDICT_ROOT=$(cd "$(dirname "$0")/.."; pwd;)
+export MULTIDICT_ROOT=$(cd "$(dirname "$0")/../.."; pwd;)
 
 cd $MULTIDICT_ROOT
 echo "exporting different python versions"
@@ -7,7 +7,7 @@ export PYTHON="python$1"
 
 echo "Installing build dependencies"
 apt-get update -y
-apt-get install -y $PYTHON python3-pip lib$PYTHON-dev
+apt-get install -y coreutils $PYTHON python3-pip lib$PYTHON-dev
 
 echo "Update pip"
 $PYTHON -m pip install --upgrade pip setuptools wheel
