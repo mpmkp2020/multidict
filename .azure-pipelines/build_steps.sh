@@ -15,8 +15,8 @@ apt-get update -y
 apt-get install -y coreutils $PYTHON python3-pip lib$PYTHON-dev
 
 echo "python version"
-which python
-python --version
+which python3
+python3 --version
 
 echo "Update pip"
 $PYTHON -m pip install --upgrade pip setuptools wheel
