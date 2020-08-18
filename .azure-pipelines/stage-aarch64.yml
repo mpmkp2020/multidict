@@ -38,7 +38,7 @@ stages:
     - script: docker run --rm --privileged hypriot/qemu-register
       displayName: 'Regietering qemu'
     - script: |
-        export DOCKER_IMAGE=quay.io/pypa/manylinux2014_aarch64
+        export DOCKER_IMAGE=arm64v8/ubuntu:bionic
         set -xeo pipefail
         export MULTIDICT_ROOT=`pwd`
         export HOST_USER_ID=$(id -u)
