@@ -1,14 +1,17 @@
 echo "exporting Mutlidict root directory"
+which python
+python --version
 export MULTIDICT_ROOT=$(cd "$(dirname "$0")/.."; pwd;)
 echo $MULTIDICT_ROOT
-
-echo "Installing build dependencies"
-yum install gcc gcc-c++ python3-devel wget make enchant-devel -y
 
 cd $MULTIDICT_ROOT
 export PATH='/opt/bin':${PATH}
 echo "standard path for different python versions"
-export PYTHON="/opt/_internal/cpython-$1*/bin/python"
+export PYTHON="python$1"
+
+echo "Installing build dependencies"
+apt-get update -y
+apt-get install -y coreutils $PYTHON python3-pip lib$PYTHON-dev
 
 echo "Update pip"
 $PYTHON -m pip install --upgrade pip setuptools wheel
