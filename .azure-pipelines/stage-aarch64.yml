@@ -1,42 +1,35 @@
 stages:
 - stage: azure_linux_test
-  displayName: 'azure-test-aarch64'
+  displayName: 'test-aarch64'
 
   jobs:
   - job: 'arm64'
     strategy:
       matrix:
-        Py35-C-Linux:
-          python.version: '3.5'
-          no_extensions: ''
-          image: 'ubuntu-latest'
-        Py36-C-Linux:
+        Py36-C-Arm64-Linux:
           python.version: '3.6'
-          no_extensions: ''
           image: 'ubuntu-latest'
-        Py37-C-Linux:
+        Py37-C-Arm64-Linux:
           python.version: '3.7'
-          no_extensions: ''
           image: 'ubuntu-latest'
-        Py38-C-Linux:
+        Py38-C-Arm64-Linux:
           python.version: '3.8'
-          no_extensions: ''
           image: 'ubuntu-latest'
     pool:
       vmImage: 'ubuntu-latest'
-    
+
     steps:
     - checkout: self
       submodules: true
       clean: true
-      
+
     - task: UsePythonVersion@0
       inputs:
         versionSpec: '$(python.version)'
-        architecture: 'x64'  
-      
+        architecture: 'x64'
+
     - script: docker run --rm --privileged hypriot/qemu-register
-      displayName: 'Regietering qemu'
+      displayName: 'Registering qemu'
     - script: |
         export DOCKER_IMAGE=arm64v8/ubuntu:bionic
         set -xeo pipefail
@@ -46,7 +39,7 @@ stages:
                    -e HOST_USER_ID \
                    -e CODECOV_TOKEN \
                    $DOCKER_IMAGE \
-                   bash /home/multidict_root/.azure-pipelines/build_steps.sh "$(python.version)"
+                   bash /home/multidict_root/.azure-pipelines/scripts/aarch64_test_steps.sh "$(python.version)"
       displayName: 'Running AArch64 build'
       env:
         CODECOV_TOKEN: $(codecov.token)
