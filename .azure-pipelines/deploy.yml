@@ -10,7 +10,7 @@ trigger:
 
 
 variables:
-- group: twine
+- group: codecov
 
 
 resources:
