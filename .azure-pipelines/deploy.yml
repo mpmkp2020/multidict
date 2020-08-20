@@ -115,7 +115,7 @@ stages:
         docker run -v "${MULTIDICT_ROOT}":/home/multidict_root:rw,z \
                    -e HOST_USER_ID \
                    $DOCKER_IMAGE \
-                   bash /home/multidict_root/.azure-pipelines/scripts/aarch64_build_steps.sh "$(python.version)"
+                   bash /home/multidict_root/.azure-pipelines/scripts/aarch64_build_steps.sh "$(python.code)"
       displayName: 'Running AArch64 build'
 
   - job:
