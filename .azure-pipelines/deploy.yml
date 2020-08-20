@@ -9,15 +9,15 @@ variables:
 - group: codecov
 
 
-#resources:
-  #containers:
-  #- container: manylinux
-    #image: quay.io/pypa/manylinux1_x86_64
-  #repositories:
-  #- repository: templates
-    #type: github
-    #name: Dish1306/azure-pipelines
-    #endpoint: aio-libs
+resources:
+  containers:
+  - container: manylinux
+    image: quay.io/pypa/manylinux1_x86_64
+  repositories:
+  - repository: templates
+    type: github
+    name: Dish1306/azure-pipelines
+    endpoint: aio-libs
 
 stages:
 - template: stage-lint.yml
