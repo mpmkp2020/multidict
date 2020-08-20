@@ -24,6 +24,8 @@ stages:
 
 - template: stage-test.yml
 
+- template: stage-aarch64.yml
+
 - stage: build
   displayName: 'Build'
 
