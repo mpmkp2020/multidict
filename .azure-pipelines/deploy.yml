@@ -26,7 +26,7 @@ stages:
 
 - template: stage-aarch64.yml
 
-- stage: azure_linux_test
+- stage: arm_linux_test
   displayName: 'test-aarch64'
 
   jobs:
