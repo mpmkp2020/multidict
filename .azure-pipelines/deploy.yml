@@ -82,7 +82,41 @@ stages:
         displayName: 'Repair wheel'
       - template: templates/step-store-dist.yml@templates
         parameters:
-          folder: wheelhouse
+          folder: 
+          
+  - job: 'manylinyxaarch64'
+    displayName: 'Manylinux_aarch64'
+    strategy:
+      matrix:
+        Py36 Arm64:
+          python.code: 'cp36-cp36m'
+          manylinux: 'manylinux_aarch64'
+        Py37 Arm64:
+          python.code: 'cp37-cp37m'
+          manylinux: 'manylinux_aarch64'
+        Py38 Arm64:
+          python.code: 'cp38-cp38m'
+          manylinux: 'manylinux_aarch64'
+    pool:
+      vmImage: 'ubuntu-latest'
+
+    steps:
+    - checkout: self
+      submodules: true
+      clean: true
+
+    - script: docker run --rm --privileged hypriot/qemu-register
+      displayName: 'Registering qemu'
+    - script: |
+        export DOCKER_IMAGE=quay.io/pypa/manylinux2014_aarch64
+        set -xeo pipefail
+        export MULTIDICT_ROOT=`pwd`
+        export HOST_USER_ID=$(id -u)
+        docker run -v "${MULTIDICT_ROOT}":/home/multidict_root:rw,z \
+                   -e HOST_USER_ID \
+                   $DOCKER_IMAGE \
+                   bash /home/multidict_root/.azure-pipelines/scripts/aarch64_build_steps.sh "$(python.version)"
+      displayName: 'Running AArch64 build'
 
   - job:
     strategy:
