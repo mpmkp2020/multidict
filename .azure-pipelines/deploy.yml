@@ -7,6 +7,7 @@ pr: none
 
 variables:
 - group: codecov
+- group: twine
 
 
 resources:
@@ -23,53 +24,6 @@ stages:
 - template: stage-lint.yml
 
 - template: stage-test.yml
-
-- template: stage-aarch64.yml
-
-- stage: arm_linux_test
-  displayName: 'test-aarch64'
-
-  jobs:
-  - job: 'arm64'
-    strategy:
-      matrix:
-        Py36-C-Arm64-Linux:
-          python.version: '3.6'
-          image: 'ubuntu-latest'
-        Py37-C-Arm64-Linux:
-          python.version: '3.7'
-          image: 'ubuntu-latest'
-        Py38-C-Arm64-Linux:
-          python.version: '3.8'
-          image: 'ubuntu-latest'
-    pool:
-      vmImage: 'ubuntu-latest'
-
-    steps:
-    - checkout: self
-      submodules: true
-      clean: true
-
-    - task: UsePythonVersion@0
-      inputs:
-        versionSpec: '$(python.version)'
-        architecture: 'x64'
-
-    - script: docker run --rm --privileged hypriot/qemu-register
-      displayName: 'Registering qemu'
-    - script: |
-        export DOCKER_IMAGE=arm64v8/ubuntu:bionic
-        set -xeo pipefail
-        export MULTIDICT_ROOT=`pwd`
-        export HOST_USER_ID=$(id -u)
-        docker run -v "${MULTIDICT_ROOT}":/home/multidict_root:rw,z \
-                   -e HOST_USER_ID \
-                   -e CODECOV_TOKEN \
-                   $DOCKER_IMAGE \
-                   bash /home/multidict_root/.azure-pipelines/scripts/aarch64_test_steps.sh "$(python.version)"
-      displayName: 'Running AArch64 build'
-      env:
-        CODECOV_TOKEN: $(codecov.token)
 
 - stage: build
   displayName: 'Build'
