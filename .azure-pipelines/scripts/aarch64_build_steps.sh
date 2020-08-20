@@ -1,6 +1,6 @@
 echo "exporting Mutlidict root directory"
 export MULTIDICT_ROOT=$(cd "$(dirname "$0")/../.."; pwd;)
-
+cd $MULTIDICT_ROOT
 
 echo "'Use Python $1"
 /opt/python/$1/bin/python -m venv .build-venv
