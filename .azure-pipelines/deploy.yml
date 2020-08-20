@@ -17,7 +17,7 @@ resources:
   - repository: templates
     type: github
     name: Dish1306/azure-pipelines
-    endpoint: aio-libs
+    endpoint: Dish1306
 
 stages:
 - template: stage-lint.yml
