@@ -98,7 +98,7 @@ stages:
           python.code: 'cp37-cp37m'
           manylinux: 'manylinux_aarch64'
         Py38 Arm64:
-          python.code: 'cp38-cp38m'
+          python.code: 'cp38-cp38'
           manylinux: 'manylinux_aarch64'
     pool:
       vmImage: 'ubuntu-latest'
