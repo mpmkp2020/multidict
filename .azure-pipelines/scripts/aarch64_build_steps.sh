@@ -8,10 +8,24 @@ echo "'Use Python $1"
  echo "Install tools"
  source .build-venv/bin/activate
  pip install -U setuptools wheel
+ if [ $? != "0" ]; then
+ echo "Update pip failed"
+ exit 1
+fi
  
  echo "Make wheel"
- source .build-venv/bin/activate
+ #source .build-venv/bin/activate
+ export CFLAGS="-Wl,-z"
+ export max-page-size="0x10000"
  python setup.py bdist_wheel
+ if [ $? != "0" ]; then
+ echo "Update pip failed"
+ exit 1
+fi
  
  echo "Repair wheel"
  auditwheel repair dist/*.whl --wheel-dir wheelhouse/
+ if [ $? != "0" ]; then
+ echo "Update pip failed"
+ exit 1
+fi
