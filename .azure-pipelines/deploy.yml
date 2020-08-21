@@ -88,6 +88,9 @@ stages:
     displayName: 'Manylinux_aarch64'
     strategy:
       matrix:
+        Py35 Arm64:
+          python.code: 'cp35-cp35m'
+          manylinux: 'manylinux_aarch64'
         Py36 Arm64:
           python.code: 'cp36-cp36m'
           manylinux: 'manylinux_aarch64'
