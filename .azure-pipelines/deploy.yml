@@ -16,7 +16,7 @@ resources:
   repositories:
   - repository: templates
     type: github
-    name: Dish1306/azure-pipelines
+    name: mpmkp2020/azure-pipelines
     endpoint: aio-libs
 
 stages:
