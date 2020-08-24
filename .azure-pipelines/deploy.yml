@@ -22,7 +22,7 @@ resources:
 stages:
 - template: stage-lint.yml
 
-- template: stage-test.yml
+#- template: stage-test.yml
 
 #- template: templates/step-aarch64.yml@templates
 #- template: step-aarch64.yml
@@ -31,60 +31,60 @@ stages:
   displayName: 'Build'
 
   jobs:
-  - job: tarball
-    displayName: 'Tarball'
-    pool:
-      vmImage: 'ubuntu-latest'
-
-    steps:
-      - template: templates/step-build.yml@templates
-        parameters:
-          steps:
-            - script: |
-                python setup.py sdist
-              displayName: 'Make tarball'
-  - job: manylinux
-    displayName: 'Manylinux'
-    strategy:
-      matrix:
-        py35 x64:
-          python.code: 'cp35-cp35m'
-          manylinux: 'manylinux_64'
-        py36 x64:
-          python.code: 'cp36-cp36m'
-          manylinux: 'manylinux_64'
-        py37 x64:
-          python.code: 'cp37-cp37m'
-          manylinux: 'manylinux_64'
-        py38 x64:
-          python.code: 'cp38-cp38'
-          manylinux: 'manylinux_64'
-    pool:
-      vmImage: 'ubuntu-latest'
-    container: manylinux
-    steps:
-      - checkout: self
-        submodules: true
-        clean: true
-
-      - script: |
-          /opt/python/$(python.code)/bin/python -m venv .build-venv
-        displayName: 'Use Python $(python.code)'
-      - script: |
-          source .build-venv/bin/activate
-          pip install -U setuptools wheel
-        displayName: 'Install tools'
-      - script: |
-          source .build-venv/bin/activate
-          python setup.py bdist_wheel
-        displayName: 'Make wheel'
-      - script: |
-          auditwheel repair dist/*.whl --wheel-dir wheelhouse/
-        displayName: 'Repair wheel'
-      - template: templates/step-store-dist.yml@templates
-        parameters:
-          folder: 
-          
+  #- job: tarball
+  #  displayName: 'Tarball'
+  #  pool:
+  #    vmImage: 'ubuntu-latest'
+  #
+  #  steps:
+  #    - template: templates/step-build.yml@templates
+  #      parameters:
+  #        steps:
+  #          - script: |
+  #              python setup.py sdist
+  #            displayName: 'Make tarball'
+  #- job: manylinux
+  #  displayName: 'Manylinux'
+  #  strategy:
+  #    matrix:
+  #      py35 x64:
+  #        python.code: 'cp35-cp35m'
+  #        manylinux: 'manylinux_64'
+  #      py36 x64:
+  #        python.code: 'cp36-cp36m'
+  #        manylinux: 'manylinux_64'
+  #      py37 x64:
+  #        python.code: 'cp37-cp37m'
+  #        manylinux: 'manylinux_64'
+  #      py38 x64:
+  #        python.code: 'cp38-cp38'
+  #        manylinux: 'manylinux_64'
+  #  pool:
+  #    vmImage: 'ubuntu-latest'
+  #  container: manylinux
+  #  steps:
+  #    - checkout: self
+  #      submodules: true
+  #      clean: true
+#
+  #    - script: |
+  #        /opt/python/$(python.code)/bin/python -m venv .build-venv
+  #      displayName: 'Use Python $(python.code)'
+  #    - script: |
+  #        source .build-venv/bin/activate
+  #        pip install -U setuptools wheel
+  #      displayName: 'Install tools'
+  #    - script: |
+  #        source .build-venv/bin/activate
+  #        python setup.py bdist_wheel
+  #      displayName: 'Make wheel'
+  #    - script: |
+  #        auditwheel repair dist/*.whl --wheel-dir wheelhouse/
+  #      displayName: 'Repair wheel'
+  #    - template: templates/step-store-dist.yml@templates
+  #      parameters:
+  #        folder: 
+  #        
   - job: 'manylinyxaarch64'
     displayName: 'Manylinux_aarch64'
     strategy:
