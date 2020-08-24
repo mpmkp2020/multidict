@@ -18,6 +18,11 @@ resources:
 #    type: github
 #    name: mpmkp2020/azure-pipelines
 #    endpoint: aio-libs
+   repositories:
+   - repository: templates
+     type: github
+     name: aio-libs/azure-pipelines
+     endpoint: aio-libs
 
 stages:
 - template: stage-lint.yml
